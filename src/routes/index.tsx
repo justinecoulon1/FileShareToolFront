@@ -1,15 +1,15 @@
-import {createFileRoute, Link} from '@tanstack/react-router'
+import {createFileRoute} from '@tanstack/react-router'
+import {redirectToLoginIfNeeded} from "../utils/redirect/redirect.utils";
 
 export const Route = createFileRoute('/')({
     component: App,
+    beforeLoad: redirectToLoginIfNeeded
 })
 
 function App() {
+
     return (
         <div>
-            <h1 className='text-5xl'>Accueil</h1>
-            <Link to='/about'>AZrojar</Link>
-            <Link to='/test'>test</Link>
         </div>
     )
 }

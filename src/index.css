@@ -1,21 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Electrolize&display=swap');
 
 :root {
-    --primary-dark: #000000;
-    --primary: #222222;
-    --primary-light: #3a3a3a;
+    --primary-darker: #202022;
+    --primary-dark: #2D2E33;
+    --primary: #393b41;
+    --primary-light: #41444b;
 
-    --secondary: #eef9fd;
+    --secondary: #e1e1e1;
     --secondary-light: #f5fafb;
 
-    --tertiary-darker: #4a95e7;
-    --tertiary-dark: #6db2ed;
-    --tertiary: #acd6f6;
-    --tertiary-light: #c4e1f9;
-    --tertiary-white: #ebf9ff;
-
     --text-primary: black;
-    --text-secondary: #ebf9ff;
+    --text-secondary: #f7fdff;
 
     --header-height: 4rem;
 }
@@ -42,5 +37,23 @@ body {
     font-size: 1rem;
     overflow-y: hidden;
 
-    background-color: var(--primary);
+    background-color: var(--primary-dark);
+}
+
+* ::-webkit-scrollbar {
+    width: 10px;
+}
+
+* ::-webkit-scrollbar-track {
+    background-color: var(--primary-dark);
+}
+
+* ::-webkit-scrollbar-thumb {
+    background-color: var(--primary-light);
+    border: 1px solid var(--primary-dark);
+}
+
+button {
+    border: none;
+    cursor: pointer;
 }

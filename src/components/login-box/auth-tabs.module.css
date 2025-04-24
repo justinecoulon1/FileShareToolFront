@@ -59,7 +59,7 @@
 
     .submitLoginButton {
         display: flex;
-        background-color: var(--tertiary);
+        background-color: var(--secondary-light);
         color: var(--text-primary);
         border: none;
         padding: 0.5rem 1rem;
@@ -69,7 +69,7 @@
         cursor: pointer;
 
         &:hover {
-            background-color: var(--tertiary-dark);
+            background-color: var(--secondary);
         }
 
         .loginButtons {

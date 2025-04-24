@@ -1,5 +1,6 @@
 import {createFileRoute} from '@tanstack/react-router'
 import {redirectToLoginIfNeeded} from "../utils/redirect/redirect.utils";
+import HomePageContainer from "../components/home-page/home-page";
 
 export const Route = createFileRoute('/')({
     component: App,
@@ -7,9 +8,7 @@ export const Route = createFileRoute('/')({
 })
 
 function App() {
-
     return (
-        <div>
-        </div>
+        <HomePageContainer/>
     )
 }

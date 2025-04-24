@@ -1,0 +1,51 @@
+.sharedFilesContainer {
+    display: flex;
+    flex-direction: column;
+
+    width: 70%;
+    height: 100%;
+
+    border-radius: 10px;
+
+    background-color: var(--primary-dark);
+
+    .titleDiv {
+        display: flex;
+        align-items: center;
+        
+        height: 4rem;
+        width: 100%;
+        padding: 1rem;
+
+        border-bottom: var(--primary-light);
+        box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    }
+
+    .sharedFilesContentContainer {
+        display: flex;
+        flex-direction: column;
+
+        padding: 1rem;
+        font-size: 1rem;
+
+        .sharedFilesFolderInput {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+
+            & input {
+                font-size: 1rem;
+                padding: 0.2rem;
+                width: 60%;
+
+                background-color: var(--primary-darker);
+                border: 1px solid var(--secondary-light);
+
+                &:focus-visible {
+                    outline: 1px solid var(--secondary-light);
+                }
+            }
+        }
+
+    }
+}

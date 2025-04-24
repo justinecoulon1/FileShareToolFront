@@ -3,6 +3,7 @@ import {getLocalStorageItem} from "../local-storage/local-storage.utils";
 
 export const redirectToLoginIfNeeded = () => {
     if (!getLocalStorageItem('user')) {
+        console.log("supposed to redirect")
         return redirectTo('/auth')
     }
 }

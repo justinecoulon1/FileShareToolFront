@@ -11,7 +11,7 @@ export default function SharedFiles() {
                     Folder Path:
                 </label>
                 <input name={"folderPath"} id={"folderPath"} type="text"
-                       placeholder={"Please enter the path to the folder you want to share"}/>
+                       placeholder={"Path to the folder you want to share"}/>
             </div>
         </div>
     </div>

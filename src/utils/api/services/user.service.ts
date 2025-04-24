@@ -1,5 +1,5 @@
 import {fstAxios} from "./FileToolShareAxios";
-import {LoginRequestDto, LoginResponseDto} from "../dto/user.dto";
+import {CreateUserRequestDto, LoginRequestDto, LoginResponseDto, UserDto} from "../dto/user.dto";
 import {clearLocalStorage} from "../../local-storage/local-storage.utils";
 
 class UserService {
@@ -13,6 +13,16 @@ class UserService {
         return response.data;
     }
 
+    async register(name: string, email: string, password: string) {
+        const body: CreateUserRequestDto = {
+            name,
+            email,
+            password,
+        };
+
+        const response = await fstAxios.post<UserDto>(`/users`, body);
+        return response.data;
+    }
 
     logout() {
         clearLocalStorage();

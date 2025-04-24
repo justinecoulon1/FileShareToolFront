@@ -1,35 +1,33 @@
 import styles from './auth-tabs.module.css';
-import React, {useActionState} from 'react';
-import {RegisterStateForm} from "./auth-form-states";
+import React, {useState} from 'react';
+import {useNavigate} from "@tanstack/react-router";
+import userService from "../../utils/api/services/user.service";
 
 
-export function RegisterTab({
-                                onRegisterSuccessful = () => {
-                                }
-                            }: { onRegisterSuccessful?: () => void }) {
+export function RegisterTab() {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [name, setName] = useState('');
+    const navigate = useNavigate()
 
-    const handleSend = async (state: RegisterStateForm, data: FormData): Promise<RegisterStateForm> => {
-        // const registerResult = await register(state, data);
-        // if (registerResult.error) {
-        //     return registerResult;
-        // }
+    const register = async () => {
+        const registerResponse = await userService.register(name, email, password);
 
-        onRegisterSuccessful();
-        return {};
+        await navigate({to: "/"})
     };
-
-    const [formState, formAction, isPending] = useActionState(handleSend, {});
-
     return (
-        <form action={formAction} className={styles.form}>
+        <form className={styles.form}>
             <div className={styles.loginFormInputsDiv}>
                 <div className={styles.loginFormInputDiv}>
-                    <label htmlFor={'name'}>Email</label>
+                    <label htmlFor={'name'}>Name</label>
                     <input
                         type={'text'}
                         name={'name'}
                         id={"name"}
-                        defaultValue={formState.name}
+                        placeholder={"Your pseudonym"}
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
                     />
                 </div>
 
@@ -39,7 +37,9 @@ export function RegisterTab({
                         type={'text'}
                         name={'email'}
                         id={"email"}
-                        defaultValue={formState.email}
+                        placeholder={"Your email"}
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                     />
                 </div>
 
@@ -50,25 +50,31 @@ export function RegisterTab({
                         type={'password'}
                         name={'password'}
                         id={"password"}
-                        defaultValue={formState.password}
+                        placeholder={"Your password"}
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
 
 
                 <div className={styles.loginFormInputDiv}>
-                    <label htmlFor={'confirm-password'}>Confirm Password</label>
+                    <label htmlFor={'confirm-password'}>Confirm password</label>
                     <input
                         type={'password'}
                         name={'confirm-password'}
+                        placeholder={"Confirm your password"}
                         id={"confirm-password"}
-                        defaultValue={formState.confirmPassword}
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
                     />
                 </div>
             </div>
 
-            <button type="submit" disabled={isPending} className={styles.submitLoginButton}>
-                {isPending ? 'Submitting' : 'Submit'}
-            </button>
+            <input type="submit" className={styles.submitLoginButton}
+                   onClick={(e) => {
+                       e.preventDefault();
+                       register();
+                   }} value={"REGISTER"}/>
         </form>
     );
 }

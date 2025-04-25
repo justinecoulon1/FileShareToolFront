@@ -9,7 +9,6 @@
 
     background-color: var(--primary-dark);
 
-
     .titleDiv {
         display: flex;
         justify-content: space-between;
@@ -20,20 +19,8 @@
         padding: 1rem;
 
         border-bottom: var(--primary-light);
-        box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
-
-        .disconnectButton {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: var(--primary);
-            padding: 0.3rem;
-            border-radius: 6px;
-
-            &:hover {
-                background-color: var(--primary-light);
-            }
-        }
+        box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px,
+        rgba(0, 0, 0, 0.24) 0px 1px 2px;
     }
 
     .usersListDiv {

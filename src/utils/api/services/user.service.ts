@@ -1,32 +1,33 @@
-import {fstAxios} from "./FileToolShareAxios";
-import {CreateUserRequestDto, LoginRequestDto, LoginResponseDto, UserDto} from "../dto/user.dto";
-import {clearLocalStorage} from "../../local-storage/local-storage.utils";
+import { fstAxios } from './FileToolShareAxios';
+import { CreateUserRequestDto, LoginRequestDto, LoginResponseDto, UserDto } from '../dto/user.dto';
+import { removeLocalStorageItem } from '../../local-storage/local-storage.utils';
 
 class UserService {
-    async login(email: string, password: string) {
-        const body: LoginRequestDto = {
-            email,
-            password,
-        };
+  async login(email: string, password: string) {
+    const body: LoginRequestDto = {
+      email,
+      password,
+    };
 
-        const response = await fstAxios.post<LoginResponseDto>(`/users/login`, body);
-        return response.data;
-    }
+    const response = await fstAxios.post<LoginResponseDto>(`/users/login`, body);
+    return response.data;
+  }
 
-    async register(name: string, email: string, password: string) {
-        const body: CreateUserRequestDto = {
-            name,
-            email,
-            password,
-        };
+  async register(name: string, email: string, password: string) {
+    const body: CreateUserRequestDto = {
+      name,
+      email,
+      password,
+    };
 
-        const response = await fstAxios.post<UserDto>(`/users`, body);
-        return response.data;
-    }
+    const response = await fstAxios.post<UserDto>(`/users`, body);
+    return response.data;
+  }
 
-    logout() {
-        clearLocalStorage();
-    }
+  logout() {
+    removeLocalStorageItem('user');
+    removeLocalStorageItem('accessToken');
+  }
 }
 
 export default new UserService();

@@ -1,4 +1,4 @@
-.sharedFilesContainer {
+.sharedFilesSectionContainer {
     display: flex;
     flex-direction: column;
 
@@ -22,7 +22,7 @@
         rgba(0, 0, 0, 0.24) 0px 1px 2px;
     }
 
-    .sharedFilesContentContainer {
+    .sharedFilesSectionContentContainer {
         display: flex;
         flex-direction: column;
 

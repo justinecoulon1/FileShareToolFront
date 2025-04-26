@@ -28,29 +28,5 @@
 
         padding: 1rem;
         font-size: 1rem;
-
-        .sharedFilesFolderInput {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-
-            & input {
-                font-size: 1rem;
-                padding: 0.2rem;
-                width: 60%;
-
-                background-color: var(--primary-darker);
-                border: 1px solid var(--secondary-light);
-
-                &:focus-visible {
-                    outline: 1px solid var(--secondary-light);
-                }
-            }
-
-            .editButtonImage {
-                height: 1.1rem;
-                width: auto;
-            }
-        }
     }
 }

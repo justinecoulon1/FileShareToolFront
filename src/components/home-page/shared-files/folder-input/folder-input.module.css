@@ -1,0 +1,36 @@
+.sharedFilesFolderInput {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    & label {
+        font-size: 1rem;
+        padding: 0.2rem;
+        white-space: nowrap;
+    }
+
+    & input {
+        font-size: 1rem;
+        padding: 0.2rem;
+        width: 60%;
+
+        background-color: var(--primary-darker);
+        border: 1px solid var(--secondary-light);
+
+        &:focus-visible {
+            outline: 1px solid var(--secondary-light);
+        }
+    }
+
+    .editButtonImage {
+        height: 1.1rem;
+        width: auto;
+    }
+
+    .folderText {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        font-size: 1rem;
+        padding: 0.2rem;
+    }
+}

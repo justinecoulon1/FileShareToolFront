@@ -28,8 +28,6 @@
         flex-direction: column;
         overflow-y: auto;
 
-        gap: 0.5rem;
-
         width: 100%;
 
         padding: 0.5rem 1rem 1rem 1rem;

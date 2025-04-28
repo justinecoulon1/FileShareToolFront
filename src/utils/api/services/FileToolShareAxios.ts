@@ -8,6 +8,6 @@ const axiosConfig: AxiosRequestConfig = {
 export const fstAxios = axios.create(axiosConfig);
 
 fstAxios.interceptors.request.use((config) => {
-  config.headers['access-token'] = getLocalStorageItem('accessToken');
+  config.headers['accessToken'] = getLocalStorageItem('accessToken');
   return config;
 });

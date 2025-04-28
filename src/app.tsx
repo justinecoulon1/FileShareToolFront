@@ -2,6 +2,7 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { createRouter, RouterProvider } from '@tanstack/react-router';
 import { routeTree } from './routeTree.gen';
+import { ClientProviders } from './client-providers';
 
 const router = createRouter({
   routeTree,
@@ -19,4 +20,4 @@ declare module '@tanstack/react-router' {
 }
 
 const root = createRoot(document.body);
-root.render(<RouterProvider router={router} />);
+root.render(<ClientProviders><RouterProvider router={router} /></ClientProviders>);

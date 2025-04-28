@@ -13,6 +13,11 @@ class UserService {
     return response.data;
   }
 
+  async getAllConnectedUsers() {
+    const response = await fstAxios.get<UserDto[]>(`/users/connected`);
+    return response.data;
+  }
+
   async register(name: string, email: string, password: string) {
     const body: CreateUserRequestDto = {
       name,

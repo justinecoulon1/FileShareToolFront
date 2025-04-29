@@ -15,7 +15,6 @@ export default function ShareList() {
     refetchInterval: POLL_INTERVAL_MS,
     refetchIntervalInBackground: true,
   });
-  console.log(data);
   return (
     <div className={styles.sharedListContainer}>
       <div className={styles.titleDiv}>

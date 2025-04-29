@@ -5,9 +5,13 @@ import { contextBridge } from 'electron';
 import * as fs from 'node:fs';
 
 contextBridge.exposeInMainWorld('electronAPI', {
-  readdir: (path: string) => fs.readdirSync(path, { withFileTypes: true }).map(dirent => ({
-    ...dirent,
-    isFile: dirent.isFile(),
-    isDirectory: dirent.isDirectory(),
-  })),
+  readdir: (path: string) => fs.readdirSync(path, { withFileTypes: true }).map(dirent => {
+    const { size } = fs.statSync(`${dirent.parentPath}\\${dirent.name}`);
+    return {
+      ...dirent,
+      isFile: dirent.isFile(),
+      isDirectory: dirent.isDirectory(),
+      fileSize: size,
+    };
+  }),
 });

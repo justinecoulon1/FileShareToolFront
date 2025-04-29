@@ -2,7 +2,8 @@ import * as fs from 'node:fs';
 
 export type SerializableDirent = Pick<fs.Dirent, 'name' | 'path' | 'parentPath'> & {
   isFile: boolean;
-  isDirectory: boolean
+  isDirectory: boolean;
+  fileSize: number;
 }
 
 export interface IElectronAPI {

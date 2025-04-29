@@ -4,6 +4,7 @@ import { SerializableDirent } from '../../../../interface';
 import { getFolderContent, haveFilesChanged, updateFileMap } from '../../../../utils/shared-files/shared-files';
 import { UpdateSharedFileInfoDto } from '../../../../utils/api/dto/shared-file.dto';
 import sharedFileService from '../../../../utils/api/services/shared-file.service';
+import { Download } from 'lucide-react';
 
 export default function SharedFilesContainer() {
   const fileMapRef = useRef(new Map<string, SerializableDirent>());
@@ -33,8 +34,19 @@ export default function SharedFilesContainer() {
 
   return (
     <div className={styles.sharedFilesContainer}>
-      {files.map((file, index) => <p
-        key={`${file.name}-${index}`}>{file.name} - {((file.fileSize) / (1024 * 1000)).toFixed(3)}</p>)}
+      {files.map((file, index) => <SharedFileCards key={`${file.name}-${index}`} file={file} />)}
+    </div>
+  );
+}
+
+function SharedFileCards({ file }: { file: SerializableDirent }) {
+  return (
+    <div className={styles.sharedFileCards}>
+      <p className={styles.sharedFileCardName}>{file.name}</p>
+      <div className={styles.sharedFileCardInfo}>
+        <p className={styles.sharedFileCardSize}>{((file.fileSize) / (1024 * 1000)).toFixed(3)}</p>
+        <button className={styles.sharedFileCardDownload}><Download /></button>
+      </div>
     </div>
   );
 }

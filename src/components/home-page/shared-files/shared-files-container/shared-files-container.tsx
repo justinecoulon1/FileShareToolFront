@@ -27,7 +27,7 @@ export default function SharedFilesContainer() {
 
     checkFiles();
 
-    const intervalId = setInterval(checkFiles, 30000);
+    const intervalId = setInterval(checkFiles, 300_000);
     return () => clearInterval(intervalId);
   }, []);
 

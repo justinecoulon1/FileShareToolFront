@@ -6,7 +6,7 @@ import { UpdateSharedFileInfoDto } from '../../../../utils/api/dto/shared-file.d
 import sharedFileService from '../../../../utils/api/services/shared-file.service';
 import { Download } from 'lucide-react';
 
-export default function SharedFilesContainer() {
+export default function SharedFilesContainer({ refreshFlag }: { refreshFlag: boolean; }) {
   const fileMapRef = useRef(new Map<string, SerializableDirent>());
   const [files, setFiles] = useState<SerializableDirent[]>([]);
 
@@ -30,7 +30,7 @@ export default function SharedFilesContainer() {
 
     const intervalId = setInterval(checkFiles, 300_000);
     return () => clearInterval(intervalId);
-  }, []);
+  }, [refreshFlag]);
 
   return (
     <div className={styles.sharedFilesContainer}>

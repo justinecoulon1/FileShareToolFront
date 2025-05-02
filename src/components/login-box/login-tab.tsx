@@ -12,6 +12,10 @@ export function LoginTab() {
     const loginResponse = await userService.login(email, password);
     setLocalStorageItem('user', loginResponse.user);
     setLocalStorageItem('accessToken', loginResponse.accessToken);
+    window.electronAPI.connectWebSocket();
+    window.addEventListener('ws-open', () => {
+      console.log('WebSocket opened');
+    });
     await navigate({ to: '/' });
   };
 

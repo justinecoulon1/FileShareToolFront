@@ -8,6 +8,9 @@ export type SerializableDirent = Pick<fs.Dirent, 'name' | 'path' | 'parentPath'>
 
 export interface IElectronAPI {
   readdir: (path: string) => SerializableDirent[];
+  connectWebSocket: () => void;
+  sendWebSocketMessage: () => void;
+  closeWebSocket: () => void;
 }
 
 declare global {

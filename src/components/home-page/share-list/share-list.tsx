@@ -1,5 +1,5 @@
 import styles from './share-list.module.css';
-import { Unplug } from 'lucide-react';
+import { RefreshCcw, Unplug } from 'lucide-react';
 import userService from '../../../utils/api/services/user.service';
 import { useRouter } from '@tanstack/react-router';
 import { useQuery } from '@tanstack/react-query';
@@ -9,7 +9,7 @@ const POLL_INTERVAL_MS = 0.5 * 60 * 1000;
 
 export default function ShareList() {
   const router = useRouter();
-  const { data, error, isLoading } = useQuery({
+  const { data, error, isLoading, refetch } = useQuery({
     queryKey: ['user-data'],
     queryFn: () => userService.getAllConnectedUsers(),
     refetchInterval: POLL_INTERVAL_MS,
@@ -19,17 +19,26 @@ export default function ShareList() {
     <div className={styles.sharedListContainer}>
       <div className={styles.titleDiv}>
         <h3>USERS</h3>
-        <button
-          onClick={() => {
-            userService.logout();
-            router.navigate({ to: '/auth' });
-          }}
-        >
-          <Unplug />
-        </button>
+        <div className={styles.buttonsDiv}>
+          <button
+            onClick={() => {
+              refetch();
+            }}
+          >
+            <RefreshCcw />
+          </button>
+          <button
+            onClick={() => {
+              userService.logout();
+              router.navigate({ to: '/auth' });
+            }}
+          >
+            <Unplug />
+          </button>
+        </div>
       </div>
       <div className={styles.usersListDiv}>
-        {!isLoading && data && data.map(d => <ShareListUserCard key={`userListCard-${d.id}`} user={d} />)}
+        {!isLoading && data && data.map((d) => <ShareListUserCard key={`userListCard-${d.id}`} user={d} />)}
       </div>
     </div>
   );

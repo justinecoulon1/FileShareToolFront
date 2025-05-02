@@ -10,7 +10,7 @@ const POLL_INTERVAL_MS = 0.5 * 60 * 1000;
 export default function ShareList() {
   const router = useRouter();
   const { data, error, isLoading } = useQuery({
-    queryKey: ['user-data'], // unique key
+    queryKey: ['user-data'],
     queryFn: () => userService.getAllConnectedUsers(),
     refetchInterval: POLL_INTERVAL_MS,
     refetchIntervalInBackground: true,

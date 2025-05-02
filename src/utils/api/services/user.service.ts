@@ -1,5 +1,5 @@
 import { fstAxios } from './FileToolShareAxios';
-import { CreateUserRequestDto, LoginRequestDto, LoginResponseDto, UserDto } from '../dto/user.dto';
+import { CreateUserRequestDto, LoginRequestDto, LoginResponseDto, UserDto, UserInfoDto } from '../dto/user.dto';
 import { removeLocalStorageItem } from '../../local-storage/local-storage.utils';
 
 class UserService {
@@ -10,6 +10,11 @@ class UserService {
     };
 
     const response = await fstAxios.post<LoginResponseDto>(`/users/login`, body);
+    return response.data;
+  }
+
+  async getUserInfo(userId: number) {
+    const response = await fstAxios.get<UserInfoDto>(`/users/${userId}`);
     return response.data;
   }
 

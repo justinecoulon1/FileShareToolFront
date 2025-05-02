@@ -32,5 +32,5 @@ export function getFolderContent(): SerializableDirent[] {
 
   const pathByUserId = getLocalStorageItem('pathByUserId') ?? {};
   const userPath = pathByUserId[user.id];
-  return window.electronAPI.readdir(userPath).filter(dirent => dirent.isFile);
+  return userPath ? window.electronAPI.readdir(userPath).filter(dirent => dirent.isFile) : [];
 }

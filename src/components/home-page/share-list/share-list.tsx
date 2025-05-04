@@ -1,5 +1,5 @@
 import styles from './share-list.module.css';
-import { RefreshCcw, Unplug } from 'lucide-react';
+import { Power, RefreshCcw } from 'lucide-react';
 import userService from '../../../utils/api/services/user.service';
 import { useRouter } from '@tanstack/react-router';
 import { useQuery } from '@tanstack/react-query';
@@ -33,7 +33,7 @@ export default function ShareList() {
               router.navigate({ to: '/auth' });
             }}
           >
-            <Unplug />
+            <Power color={'#ff4b4b'} />
           </button>
         </div>
       </div>

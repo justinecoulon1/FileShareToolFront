@@ -3,7 +3,6 @@
     flex-direction: column;
     align-items: center;
 
-    position: absolute;
     overflow-y: auto;
 
     border-radius: 0.2rem;

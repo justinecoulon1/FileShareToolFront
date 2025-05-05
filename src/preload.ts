@@ -8,15 +8,19 @@ import WebSocket from 'ws';
 
 let socket: WebSocket | null = null;
 contextBridge.exposeInMainWorld('electronAPI', {
-  readdir: (path: string) => fs.readdirSync(path, { withFileTypes: true }).map(dirent => {
-    const { size } = fs.statSync(`${dirent.parentPath}\\${dirent.name}`);
-    return {
-      ...dirent,
-      isFile: dirent.isFile(),
-      isDirectory: dirent.isDirectory(),
-      fileSize: size,
-    };
-  }),
+  readdir: (path: string) =>
+    fs.readdirSync(path, { withFileTypes: true }).map((dirent) => {
+      const { size } = fs.statSync(`${dirent.parentPath}\\${dirent.name}`);
+      return {
+        ...dirent,
+        isFile: dirent.isFile(),
+        isDirectory: dirent.isDirectory(),
+        fileSize: size,
+      };
+    }),
+  isSocketConnected: () => {
+    return socket && socket.readyState === WebSocket.OPEN;
+  },
   connectWebSocket: () => {
     const userToken = getLocalStorageItem('accessToken');
     if (!userToken) {
@@ -24,11 +28,9 @@ contextBridge.exposeInMainWorld('electronAPI', {
     }
     socket = new WebSocket('ws://localhost:8080/api/hello', {
       headers: { accessToken: userToken },
-
     });
     socket.on('open', () => {
       console.log('WebSocket connection opened');
-      // socket?.send(JSON.stringify({ message: 'Hello Server!' }));
       window.dispatchEvent(new CustomEvent('ws-open'));
     });
 

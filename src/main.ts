@@ -11,7 +11,10 @@ const createWindow = () => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     width: 1500,
-    height: 600,
+    height: 800,
+    minHeight: 700,
+    minWidth: 1000,
+    icon: path.join(__dirname, 'favicon.ico'),
     titleBarStyle: 'hidden',
     titleBarOverlay: {
       color: '#212125',

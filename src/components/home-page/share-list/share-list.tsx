@@ -4,6 +4,7 @@ import userService from '../../../utils/api/services/user.service';
 import { useRouter } from '@tanstack/react-router';
 import { useQuery } from '@tanstack/react-query';
 import ShareListUserCard from './share-list-user-card/share-list-user-card';
+import { useEffect } from 'react';
 
 const POLL_INTERVAL_MS = 0.5 * 60 * 1000;
 
@@ -15,6 +16,16 @@ export default function ShareList() {
     refetchInterval: POLL_INTERVAL_MS,
     refetchIntervalInBackground: true,
   });
+
+  useEffect(() => {
+    if (!window.electronAPI.isSocketConnected()) {
+      window.electronAPI.connectWebSocket();
+      window.addEventListener('ws-open', () => {
+        refetch();
+      });
+    }
+  }, []);
+
   return (
     <div className={styles.sharedListContainer}>
       <div className={styles.titleDiv}>

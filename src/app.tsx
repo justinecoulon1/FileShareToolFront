@@ -24,7 +24,7 @@ const root = createRoot(document.body);
 root.render(
   <ClientProviders>
     <div className={styles.titleBar}>
-      <img src="/logo.png" alt="logo" className={styles.logo} />
+      <img src="/grey-frog-banner-blue-eyes.png" alt="logo" className={styles.logo} />
       <p className={styles.appName}>File Share Tool</p>
     </div>
     <RouterProvider router={router} />

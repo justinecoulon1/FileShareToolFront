@@ -4,9 +4,8 @@ import { SerializableDirent } from '../../../../interface';
 import { getFolderContent, haveFilesChanged, updateFileMap } from '../../../../utils/shared-files/shared-files';
 import { UpdateSharedFileInfoDto } from '../../../../utils/api/dto/shared-file.dto';
 import sharedFileService from '../../../../utils/api/services/shared-file.service';
-import { Download } from 'lucide-react';
 
-export default function SharedFilesContainer({ refreshFlag }: { refreshFlag: boolean; }) {
+export default function SharedFilesContainer({ refreshFlag }: { refreshFlag: boolean }) {
   const fileMapRef = useRef(new Map<string, SerializableDirent>());
   const [files, setFiles] = useState<SerializableDirent[]>([]);
 
@@ -16,7 +15,7 @@ export default function SharedFilesContainer({ refreshFlag }: { refreshFlag: boo
       const currentMap = fileMapRef.current;
 
       if (haveFilesChanged(currentMap, newFiles)) {
-        const updatedSharedFileInfoDto: UpdateSharedFileInfoDto[] = newFiles.map(file => ({
+        const updatedSharedFileInfoDto: UpdateSharedFileInfoDto[] = newFiles.map((file) => ({
           name: file.name,
           byteSize: file.fileSize,
         }));
@@ -34,7 +33,9 @@ export default function SharedFilesContainer({ refreshFlag }: { refreshFlag: boo
 
   return (
     <div className={styles.sharedFilesContainer}>
-      {files.map((file, index) => <SharedFileCards key={`${file.name}-${index}`} file={file} />)}
+      {files.map((file, index) => (
+        <SharedFileCards key={`${file.name}-${index}`} file={file} />
+      ))}
     </div>
   );
 }
@@ -44,8 +45,7 @@ function SharedFileCards({ file }: { file: SerializableDirent }) {
     <div className={styles.sharedFileCards}>
       <p className={styles.sharedFileCardName}>{file.name}</p>
       <div className={styles.sharedFileCardInfo}>
-        <p className={styles.sharedFileCardSize}>{((file.fileSize) / (1024 * 1000)).toFixed(3)}</p>
-        <button className={styles.sharedFileCardDownload}><Download /></button>
+        <p className={styles.sharedFileCardSize}>{(file.fileSize / (1024 * 1000)).toFixed(3)}</p>
       </div>
     </div>
   );

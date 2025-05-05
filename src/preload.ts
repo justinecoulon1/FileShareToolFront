@@ -26,7 +26,7 @@ contextBridge.exposeInMainWorld('electronAPI', {
     if (!userToken) {
       throw new Error('Must be logged in');
     }
-    socket = new WebSocket('ws://localhost:8080/api/hello', {
+    socket = new WebSocket('ws://localhost:8080/api/socket', {
       headers: { accessToken: userToken },
     });
     socket.on('open', () => {

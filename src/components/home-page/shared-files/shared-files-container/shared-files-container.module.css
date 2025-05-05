@@ -6,6 +6,7 @@
     height: 100%;
 
     border: 1px solid var(--primary-dark);
+    border-radius: 0 0 10px 10px;
 
     .sharedFileCards {
         display: flex;

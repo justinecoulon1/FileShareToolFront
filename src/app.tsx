@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { createRouter, RouterProvider } from '@tanstack/react-router';
 import { routeTree } from './routeTree.gen';
 import { ClientProviders } from './client-providers';
+import styles from './title-bar.module.css';
 
 const router = createRouter({
   routeTree,
@@ -20,4 +21,12 @@ declare module '@tanstack/react-router' {
 }
 
 const root = createRoot(document.body);
-root.render(<ClientProviders><RouterProvider router={router} /></ClientProviders>);
+root.render(
+  <ClientProviders>
+    <div className={styles.titleBar}>
+      <img src="/logo.png" alt="logo" className={styles.logo} />
+      <p className={styles.appName}>File Share Tool</p>
+    </div>
+    <RouterProvider router={router} />
+  </ClientProviders>,
+);

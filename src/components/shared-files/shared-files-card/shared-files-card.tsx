@@ -7,9 +7,11 @@ import { Download } from 'lucide-react';
 export function SharedFileCard({
   file,
   isDownloadable,
+  onDownloadButtonClicked = () => {},
 }: {
   file: SerializableDirent | SharedFileInfoDto;
   isDownloadable: boolean;
+  onDownloadButtonClicked?: () => void;
 }) {
   return (
     <div className={styles.sharedFileCards}>
@@ -17,7 +19,7 @@ export function SharedFileCard({
       <div className={styles.sharedFileCardInfo}>
         <p className={styles.sharedFileCardSize}>{formatFileSize(file.byteSize)}</p>
         {isDownloadable && (
-          <button className={styles.sharedFileCardDownload}>
+          <button className={styles.sharedFileCardDownload} onClick={onDownloadButtonClicked}>
             <Download />
           </button>
         )}

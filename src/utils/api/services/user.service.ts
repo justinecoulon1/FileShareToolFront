@@ -37,7 +37,7 @@ class UserService {
   logout() {
     removeLocalStorageItem('user');
     removeLocalStorageItem('accessToken');
-    window.electronAPI.closeWebSocket();
+    window.electronAPI.closeSocket();
   }
 }
 

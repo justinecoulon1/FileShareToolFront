@@ -3,10 +3,9 @@
 
 import { contextBridge } from 'electron';
 import * as fs from 'node:fs';
-import { getLocalStorageItem } from './utils/local-storage/local-storage.utils';
-import WebSocket from 'ws';
+import { SocketMessage, SocketMessageTypes } from './utils/api/dto/socket.dto';
+import SocketHandler from './utils/socket/socket.handler';
 
-let socket: WebSocket | null = null;
 contextBridge.exposeInMainWorld('electronAPI', {
   readdir: (path: string) =>
     fs.readdirSync(path, { withFileTypes: true }).map((dirent) => {
@@ -19,45 +18,15 @@ contextBridge.exposeInMainWorld('electronAPI', {
       };
     }),
   isSocketConnected: () => {
-    return socket && socket.readyState === WebSocket.OPEN;
+    return SocketHandler.isSocketConnected();
   },
-  connectWebSocket: () => {
-    const userToken = getLocalStorageItem('accessToken');
-    if (!userToken) {
-      throw new Error('Must be logged in');
-    }
-    socket = new WebSocket('ws://localhost:8080/api/socket', {
-      headers: { accessToken: userToken },
-    });
-    socket.on('open', () => {
-      console.log('WebSocket connection opened');
-      window.dispatchEvent(new CustomEvent('ws-open'));
-    });
-
-    socket.on('message', (data: WebSocket.Data) => {
-      console.log('Received:', data);
-      window.dispatchEvent(new CustomEvent('ws-message', { detail: data.toString() }));
-      return false;
-    });
-
-    socket.on('error', (err: Error) => {
-      console.error('WebSocket error:', err);
-      window.dispatchEvent(new CustomEvent('ws-error', { detail: err.message }));
-    });
-
-    socket.on('close', () => {
-      console.log('WebSocket connection closed');
-      window.dispatchEvent(new CustomEvent('ws-close'));
-    });
+  connectSocket: () => {
+    return SocketHandler.connectSocket();
   },
-  sendWebSocketMessage: (message: string) => {
-    if (socket && socket.readyState === WebSocket.OPEN) {
-      socket.send(message);
-    } else {
-      console.warn('WebSocket not open');
-    }
+  sendSocketMessage: (message: SocketMessage<SocketMessageTypes, unknown>) => {
+    return SocketHandler.sendSocketMessage(message);
   },
-  closeWebSocket: () => {
-    socket?.close();
+  closeSocket: () => {
+    return SocketHandler.closeSocket();
   },
 });

@@ -26,7 +26,7 @@ export default function ShareList({ selectedUserId }: { selectedUserId?: number 
 
   useEffect(() => {
     if (!window.electronAPI.isSocketConnected()) {
-      window.electronAPI.connectWebSocket();
+      window.electronAPI.connectSocket();
       window.addEventListener('ws-open', () => {
         refetch();
       });

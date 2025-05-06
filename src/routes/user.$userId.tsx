@@ -29,7 +29,7 @@ function RouteComponent() {
 
     const intervalId = setInterval(getUserInfo, 30_000);
     return () => clearInterval(intervalId);
-  }, [refreshFlag]);
+  }, [refreshFlag, userId]);
 
   return <UserPageContainer onRefresh={refreshFiles} userInfo={userInfo ?? undefined} />;
 }

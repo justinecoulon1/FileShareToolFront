@@ -1,4 +1,4 @@
-import { SerializableDirent } from '../../../interface';
+import type { SerializableDirent } from '../../../interface.d.ts';
 import styles from './shared-files-card.module.css';
 import { formatFileSize } from '../../../utils/shared-files/shared-files';
 import { SharedFileInfoDto } from '../../../utils/api/dto/shared-file.dto';

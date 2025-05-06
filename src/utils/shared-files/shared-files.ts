@@ -1,4 +1,4 @@
-import { SerializableDirent } from '../../interface';
+import type { SerializableDirent } from '../../interface.d.ts';
 import { getLocalStorageItem } from '../local-storage/local-storage.utils';
 
 export function haveFilesChanged(currentMap: Map<string, SerializableDirent>, newFiles: SerializableDirent[]): boolean {

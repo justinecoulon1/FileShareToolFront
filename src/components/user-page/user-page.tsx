@@ -12,7 +12,7 @@ export default function UserPageContainer({
 }) {
   return (
     <div className={styles.userPageContainer}>
-      <ShareList />
+      <ShareList selectedUserId={userInfo?.user.id} />
       <UserSharedFilesSection onRefresh={onRefresh} userInfo={userInfo} />
     </div>
   );

@@ -13,6 +13,10 @@
     }
 }
 
+.selectedCard {
+    background-color: var(--primary);
+}
+
 .shareListUserCard:not(:last-child) {
     border-bottom: 1px solid var(--primary-light);
 }

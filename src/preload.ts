@@ -15,7 +15,7 @@ contextBridge.exposeInMainWorld('electronAPI', {
         ...dirent,
         isFile: dirent.isFile(),
         isDirectory: dirent.isDirectory(),
-        fileSize: size,
+        byteSize: size,
       };
     }),
   isSocketConnected: () => {

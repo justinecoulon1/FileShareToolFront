@@ -8,7 +8,7 @@ export function haveFilesChanged(currentMap: Map<string, SerializableDirent>, ne
 
   for (const file of newFiles) {
     const existing = currentMap.get(file.name);
-    if (!existing || existing.fileSize !== file.fileSize) {
+    if (!existing || existing.byteSize !== file.byteSize) {
       return true;
     }
   }
@@ -23,7 +23,6 @@ export function updateFileMap(currentMap: Map<string, SerializableDirent>, newFi
   }
 }
 
-
 export function getFolderContent(): SerializableDirent[] {
   const user = getLocalStorageItem('user');
   if (!user) {
@@ -32,5 +31,19 @@ export function getFolderContent(): SerializableDirent[] {
 
   const pathByUserId = getLocalStorageItem('pathByUserId') ?? {};
   const userPath = pathByUserId[user.id];
-  return userPath ? window.electronAPI.readdir(userPath).filter(dirent => dirent.isFile) : [];
+  return userPath ? window.electronAPI.readdir(userPath).filter((dirent) => dirent.isFile) : [];
+}
+
+export function formatFileSize(byteSize: number): string {
+  if (isNaN(byteSize) || byteSize < 0) {
+    throw new Error('Invalid byte size provided');
+  }
+
+  const kilobytes = byteSize / 1024;
+  if (kilobytes < 1024) {
+    return `${Math.round(kilobytes)} Ko`;
+  }
+
+  const megabytes = kilobytes / 1024;
+  return `${megabytes.toFixed(2)} Mo`;
 }

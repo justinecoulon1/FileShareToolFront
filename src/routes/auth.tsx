@@ -9,7 +9,7 @@ export const Route = createFileRoute('/auth')({
 function RouteComponent() {
   return (
     <div className={styles.authPage}>
-      <img className={styles.logo} src="/grey-frog-banner-blue-eyes.png" alt="logo" />
+      <img className={styles.logo} src="/file-share-tool.png" alt="logo" />
       <LoginBox />
     </div>
   );
